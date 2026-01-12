@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Album Kenangan Sekolah</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg,
+        #0f2027,
+        #203a43,
+        #2c5364
+      );
+      background-size: 300% 300%;
+      animation: darkFlow 16s ease infinite;
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(0,0,0,0.4), transparent 55%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.6), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(255,255,255,0.4), transparent 55%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    /* BACKGROUND EFFECT */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(173,216,230,0.25), rgba(255,182,193,0.25));
+      animation: bgMove 15s ease-in-out infinite alternate;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px);
+      background-size: 35px 35px;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      animation: fadeDown 1.2s ease;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+      color: #ffffff;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    header .subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      color: #8fd3f4;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #62edff;
+    }
+
+    /* GALLERY */
+    .gallery {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    /* CARD BASE */
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, #1e1e1e, #2a2a2a);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      transition: transform 0.45s ease, box-shadow 0.45s ease;
+      animation: fadeUp 1s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 35px 60px rgba(0,0,0,0.85);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.04);
+      box-shadow: 0 30px 55px rgba(0,0,0,0.25);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    /* FRAME STYLE VARIATIONS */
+    .frame-polaroid {
+      padding: 12px 12px 35px;
+      background: #fff;
+    }
+
+    .frame-rounded img {
+      border-radius: 18px;
+    }
+
+    .frame-gradient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 2px;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a18cd1);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .frame-shadow {
+      box-shadow: 0 25px 45px rgba(0,0,0,0.18);
+    }
+
+    .frame-glass {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .frame-dashed {
+      border: 3px dashed #a18cd1;
+    }
+
+    .frame-classic {
+      border: 6px solid #eee;
+      padding: 6px;
+    }
+
+    .frame-vintage {
+      filter: sepia(0.2) contrast(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .content h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .content p {
+      font-size: 0.88rem;
+      color: #cfcfcf;
+    }
+
+    /* FOOTER */
+    footer {
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      padding: 35px 20px;
+      font-size: 0.85rem;
+      color: #f5a4a4;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bgMove {
+      from { transform: scale(1) translateY(0); }
+      to { transform: scale(1.1) translateY(-20px); }
+    }
+
+    @keyframes darkFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+      to { transform: scale(1.1) translateY(-20px); }
+    }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .card img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="subtitle">FAMOS 41 FIRST GENERATION (2022)</div>
+    <h1>Album Kenangan Sekolah</h1>
+    <p>Kisah sederhana yang akan selalu kita ingat</p>
+  </header>
+
+  <section class="gallery">
+
+    <div class="card frame-rounded">
+      <img src="famos5.jpg" alt="Kenangan 1">
+      <div class="content">
+        <h3>Alkena Ala Ala</h3>
+        <p>Stay Cool Dude.</p>
+      </div>
+    </div>
+
+    <div class="card frame-rounded frame-glass">
+      <img src="famos2.jpeg" alt="Kenangan 2">
+      <div class="content">
+        <h3>Famos Tapi Gak Lengkap</h3>
+        <p>Top Pada Masanya.</p>
+      </div>
+    </div>
+
+    <div class="card frame-glass">
+      <img src="famos4.jpg" alt="Kenangan 3">
+      <div class="content">
+        <h3>Futsal Series </h3>
+        <p>Supporteran tipis tipis.</p>
+      </div>
+    </div>
+
+    <div class="card frame-rounded frame-shadow">
+      <img src="famos1.jpg" alt="Kenangan 4">
+      <div class="content">
+        <h3>Syahduu</h3>
+        <p>thank you mas joo.</p>
+      </div>
+    </div>
+
+    <div class="card frame-dashed">
+      <img src="famos8.jpg" alt="Kenangan 5">
+      <div class="content">
+        <h3>Famos Lengkap</h3>
+        <p>Satu frame, sejuta cerita.</p>
+      </div>
+    </div>
+
+    <div class="card frame-classic">
+      <img src="stukamfamos.jpg" alt="Kenangan 6">
+      <div class="content">
+        <h3>Stukam Cihuyy</h3>
+        <p>jalan jalan penuh cerita bro.</p>
+      </div>
+    </div>
+
+    <div class="card frame-vintage">
+      <img src="famos7.jpg" alt="Kenangan 7">
+      <div class="content">
+        <h3>Batik Day</h3>
+        <p>FAMOS 41.</p>
+      </div>
+    </div>
+
+    <div class="card frame-gradient frame-shadow">
+      <img src="famos9.jpg" alt="Kenangan 8">
+      <div class="content">
+        <h3>Hari Terakhir</h3>
+        <p>See You yahh bro semuaa.</p>
+      </div>
+    </div>
+
+    <audio autoplay>
+      <source src="lagufamos.mp3" type="audio/mp3">
+
+    </audio>
+
+  </section>
+
+  <footer>
+   Thankss Ya Bro Buat 3 Tahun nyaa, see you on top bro brooo..
+  <p></p>- OMS -
+  </footer>
+
+</body>
+</html>
