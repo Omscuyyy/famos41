@@ -337,10 +337,19 @@
         <p>See You yahh bro semuaa.</p>
       </div>
     </div>
-
-    <audio controls>
+    
+<p>Klik di mana aja bro buat mulai musik nya ya.. </p>
+   <audio id="bgm" loop>
   <source src="lagufamos.mp3" type="audio/mpeg">
-    </audio>
+</audio>
+
+<script>
+document.addEventListener("click", () => {
+  const music = document.getElementById("bgm");
+  music.volume = 0.7;
+  music.play();
+}, { once: true });
+</script>
 
   </section>
 
